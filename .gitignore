@@ -22,6 +22,7 @@ venv/
 
 # Generated caches (refetched at runtime)
 uspvdb_western_cache.json
+panel_inventory_cache.json
 panel_cache.db
 *.pt.bak
 
