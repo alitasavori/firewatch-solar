@@ -1,8 +1,21 @@
 import { useState, useRef, useEffect, useCallback, useMemo, memo } from 'react';
-import ReactMapGl, { Marker, Source } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import ReactMapGl, { Marker } from 'react-map-gl/maplibre';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles/MapContainer.css';
-import { MAPBOX_TOKEN } from '../config';
+
+// Free OSM raster style — Mapbox satellite token returned 401 locally.
+const OSM_STYLE = {
+  version: 8,
+  sources: {
+    osm: {
+      type: 'raster',
+      tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+      tileSize: 256,
+      attribution: '© OpenStreetMap contributors',
+    },
+  },
+  layers: [{ id: 'osm', type: 'raster', source: 'osm' }],
+};
 
 const WEST_BOUNDS = [
   [-125.5, 30.5],
@@ -157,20 +170,10 @@ export default function MapContainer({
         initialViewState={INITIAL_VIEW}
         onLoad={() => setMapReady(true)}
         style={{ width: '100%', height: '100%' }}
-        mapStyle="mapbox://styles/mapbox/satellite-streets-v12"
-        mapboxAccessToken={MAPBOX_TOKEN}
+        mapStyle={OSM_STYLE}
         maxBounds={WEST_BOUNDS}
-        terrain={{ source: 'mapbox-dem', exaggeration: 1.2 }}
         reuseMaps
       >
-        <Source
-          id="mapbox-dem"
-          type="raster-dem"
-          url="mapbox://mapbox.mapbox-terrain-dem-v1"
-          tileSize={512}
-          maxzoom={14}
-        />
-
         {renderPanels.map((panel) => (
           <PanelMarker
             key={panel.id}
