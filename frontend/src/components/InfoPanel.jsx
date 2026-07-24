@@ -687,9 +687,6 @@ function InfoPanel({
                 <section className="bill-summary" aria-labelledby="bill-summary-title">
                     <div className="bill-summary__heading">
                         <div>
-                            <span className="bill-summary__eyebrow">
-                                Selected monthly period · {billSummary.days} days
-                            </span>
                             <h4 id="bill-summary-title">Estimated Monthly Electricity Bill</h4>
                         </div>
                         <span className="bill-summary__rate">

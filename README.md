@@ -1,6 +1,8 @@
 # FireWatch Solar
 
-Hybrid third project: **PV smoke-impact forecasting** (MLP/SRI) inside a **FireWatch-inspired visual shell**.
+An interactive map for exploring how wildfire smoke may affect solar power plants. It estimates baseline vs smoke-affected generation, a soiling risk score (SRI), and a simple bill impact.
+
+Covers large solar plants across the Western U.S. (USGS USPVDB). Weather and air-quality data drive the site analysis when available.
 
 Original projects are **not modified**:
 

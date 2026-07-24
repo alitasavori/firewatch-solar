@@ -11,7 +11,6 @@ export default function Navbar({
   onSelectPanel,
   onHoverPanel,
   billDifference,
-  coverageMeta,
   listFilter,
   setListFilter,
   totalCount,
@@ -29,26 +28,6 @@ export default function Navbar({
         <div>
           Sites loaded: <b>{totalCount ?? panels.length}</b>
         </div>
-        {coverageMeta?.inference_capable_count != null && (
-          <div>
-            Inference-ready: <b>{coverageMeta.inference_capable_count}</b>
-          </div>
-        )}
-        {coverageMeta?.pm25_epa_nearest_count != null && (
-          <div>
-            USPVDB via nearest EPA: <b>{coverageMeta.pm25_epa_nearest_count}</b>
-          </div>
-        )}
-        {coverageMeta?.pm25_openmeteo_count != null && (
-          <div>
-            USPVDB via Open-Meteo: <b>{coverageMeta.pm25_openmeteo_count}</b>
-          </div>
-        )}
-        {coverageMeta?.solarsense_count != null && (
-          <div>
-            Utah EPA sites: <b>{coverageMeta.solarsense_count}</b>
-          </div>
-        )}
       </div>
 
       <div className="fw-filter-row">
@@ -87,7 +66,7 @@ export default function Navbar({
       </div>
 
       <div className="navbar-info">
-        <ProjectInfo coverageMeta={coverageMeta} />
+        <ProjectInfo />
       </div>
     </div>
   );

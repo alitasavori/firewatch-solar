@@ -1,20 +1,15 @@
-export default function ProjectInfo({ coverageMeta }) {
+export default function ProjectInfo() {
   return (
     <div className="project-info">
       <h3>FireWatch Solar</h3>
       <p>
-        Weather and PM2.5 forecasting for PV sites: baseline vs smoke-affected
-        generation and SRI, in a FireWatch-inspired layout. No FIRMS wildfire layers.
+        An interactive map for exploring how wildfire smoke may affect solar power
+        plants. It estimates baseline vs smoke-affected generation, a soiling risk
+        score (SRI), and a simple bill impact.
       </p>
       <p>
-        Coverage:{' '}
-        {coverageMeta?.coverage ||
-          'Western US USGS USPVDB + Utah EPA monitoring sites'}
-        . Not full CONUS.
-      </p>
-      <p>
-        Sites without a resolved PM2.5 source appear on the map/list only; MLP/SRI
-        is not invented for those plants.
+        Covers large solar plants across the Western U.S. (USGS USPVDB). Weather and
+        air-quality data drive the site analysis when available.
       </p>
     </div>
   );
