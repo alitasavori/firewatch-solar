@@ -56,8 +56,10 @@ def _cache_fresh() -> bool:
     return datetime.now() - mtime < timedelta(hours=CACHE_MAX_AGE_HOURS)
 
 
-def _load_cache() -> list[dict[str, Any]] | None:
-    if not _cache_fresh():
+def _load_cache(*, allow_stale: bool = False) -> list[dict[str, Any]] | None:
+    if not os.path.exists(CACHE_FILE):
+        return None
+    if not allow_stale and not _cache_fresh():
         return None
     try:
         with open(CACHE_FILE, "r", encoding="utf-8") as f:
@@ -111,18 +113,33 @@ def _dedupe_monitors(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return list(best.values())
 
 
-def fetch_western_pm25_monitors(use_cache: bool = True) -> list[dict[str, Any]]:
-    """Download (or load) Western US EPA AQS PM2.5 (88101) monitors."""
+def fetch_western_pm25_monitors(
+    use_cache: bool = True,
+    allow_remote: bool = True,
+) -> list[dict[str, Any]]:
+    """Load Western US EPA AQS PM2.5 (88101) monitors.
+
+    Request-path callers should pass allow_remote=False so inventory never blocks
+    on EPA network I/O. Stale disk cache is preferred over an empty catalog.
+    """
     global _MONITORS_MEM
 
     if use_cache and _MONITORS_MEM is not None:
         return _MONITORS_MEM
 
     if use_cache:
-        cached = _load_cache()
+        cached = _load_cache(allow_stale=False)
         if cached is not None:
             _MONITORS_MEM = cached
             return cached
+
+    if not allow_remote:
+        # Prefer any on-disk catalog (even stale) rather than blocking or returning [].
+        stale = _load_cache(allow_stale=True) if use_cache else None
+        if stale is not None:
+            _MONITORS_MEM = stale
+            return stale
+        return []
 
     # Recent calendar year window so AQS returns active-ish monitors.
     year = datetime.utcnow().year - 1
@@ -137,7 +154,8 @@ def fetch_western_pm25_monitors(use_cache: bool = True) -> list[dict[str, Any]]:
             f"&bdate={bdate}&edate={edate}&state={fips}"
         )
         try:
-            resp = requests.get(url, timeout=90)
+            # Keep remote refresh bounded; inventory must not depend on this path.
+            resp = requests.get(url, timeout=20)
             resp.raise_for_status()
             payload = resp.json()
             rows = payload.get("Data") or []
@@ -150,7 +168,14 @@ def fetch_western_pm25_monitors(use_cache: bool = True) -> list[dict[str, Any]]:
     if monitors:
         _save_cache(monitors)
         _MONITORS_MEM = monitors
-    return monitors
+        return monitors
+
+    # Remote failed/partial — fall back to stale disk so enrichment still works.
+    stale = _load_cache(allow_stale=True) if use_cache else None
+    if stale is not None:
+        _MONITORS_MEM = stale
+        return stale
+    return []
 
 
 def nearest_pm25_monitor(

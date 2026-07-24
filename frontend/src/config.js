@@ -1,10 +1,12 @@
 /**
  * API base for hybrid backend (default port 8002).
- * Override with VITE_API_URL in .env
+ * Override with VITE_API_URL in .env / .env.production
+ * Empty string is treated as unset so production never silently uses relative /api.
  */
+const fromEnv = import.meta.env.VITE_API_URL;
 export const API_BASE =
-  import.meta.env.VITE_API_URL !== undefined
-    ? import.meta.env.VITE_API_URL
+  typeof fromEnv === 'string' && fromEnv.trim() !== ''
+    ? fromEnv.trim().replace(/\/$/, '')
     : 'http://127.0.0.1:8002';
 
 /**

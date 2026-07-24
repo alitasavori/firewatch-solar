@@ -97,6 +97,7 @@ def reset_cache():
         "weather_cache.json",
         "uspvdb_western_cache.json",
         "epa_pm25_monitors_cache.json",
+        "panel_inventory_cache.json",
     ):
         if os.path.exists(name):
             os.remove(name)

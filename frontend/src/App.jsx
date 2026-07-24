@@ -19,22 +19,37 @@ function App() {
   const [listFilter, setListFilter] = useState('all'); // all | inference | map
 
   useEffect(() => {
-    async function fetchPanels() {
+    let cancelled = false;
+
+    async function fetchPanels(attempt = 0) {
       try {
         const [panelsRes, metaRes] = await Promise.all([
           fetch(`${API_BASE}/api/panels`),
           fetch(`${API_BASE}/api/panels/meta`).catch(() => null),
         ]);
+        if (!panelsRes.ok) {
+          throw new Error(`panels HTTP ${panelsRes.status}`);
+        }
         const data = await panelsRes.json();
-        setPanelsRaw(Array.isArray(data) ? data : data?.panels || []);
+        const list = Array.isArray(data) ? data : data?.panels || [];
+        if (cancelled) return;
+        setPanelsRaw(list);
         if (metaRes?.ok) {
           setCoverageMeta(await metaRes.json());
         }
       } catch (err) {
         console.error('Error fetching panels:', err);
+        // Backend --reload / cold start can briefly reset connections.
+        if (!cancelled && attempt < 4) {
+          const delay = 400 * (attempt + 1);
+          setTimeout(() => fetchPanels(attempt + 1), delay);
+        }
       }
     }
     fetchPanels();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const panels = useMemo(() => {

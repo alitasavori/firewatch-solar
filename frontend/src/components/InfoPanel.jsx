@@ -439,18 +439,26 @@ const SRIGauge = ({ value }) => {
                     textAnchor="middle"
                     fontSize={radius * 0.18}
                     fontWeight="bold"
-                    fill="#e8eef5"
+                    fill="#f5f8ff"
+                    stroke="rgba(8,12,28,0.9)"
+                    strokeWidth={1.25}
+                    paintOrder="stroke"
+                    style={{ paintOrder: 'stroke fill' }}
                 >
                     {`SRI: ${sriPercent.toFixed(2)}%`}
                 </text>
 
                 <text
                     x={cx}
-                    y={cy + radius * 0.15 + 10}
+                    y={Math.min(cy + radius * 0.15 + 10, height - 8)}
                     textAnchor="middle"
-                    fontSize={radius * 0.18}
-                    fill="#c8d4e6"
+                    fontSize={radius * 0.16}
+                    fill="#e8eef5"
                     fontWeight="bold"
+                    stroke="rgba(8,12,28,0.9)"
+                    strokeWidth={1.25}
+                    paintOrder="stroke"
+                    style={{ paintOrder: 'stroke fill' }}
                 >
                     {instruction}
                 </text>
