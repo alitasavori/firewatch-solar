@@ -60,28 +60,6 @@
   background-clip: text;
 }
 
-.fw-hud-title {
-  position: absolute;
-  top: 16px;
-  right: 60px;
-  z-index: 1600;
-  padding: 10px 18px;
-  background: var(--fw-bg-panel);
-  border: 2px solid var(--fw-border);
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  box-shadow: var(--fw-glow);
-  pointer-events: none;
-}
-
-.fw-hud-title span {
-  font-family: var(--fw-font-display);
-  font-size: 16px;
-  background: linear-gradient(180deg, var(--fw-accent-gold), var(--fw-accent-orange));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
 @media (max-width: 1000px) {
   #root {
     overflow-y: auto;
@@ -118,9 +96,5 @@
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 45vh;
-  }
-
-  .fw-hud-title {
-    display: none;
   }
 }

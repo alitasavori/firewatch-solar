@@ -108,10 +108,6 @@ function App() {
       />
 
       <div className="right-container">
-        <div className="fw-hud-title">
-          <span>FIREWATCH SOLAR</span>
-        </div>
-
         <MapContainer
           panels={panels}
           selectedPanelId={selectedPanelId}

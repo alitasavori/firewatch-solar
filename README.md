@@ -1,8 +1,9 @@
 # FireWatch Solar
 
-Weather and PM2.5 forecasting for PV sites: baseline vs smoke-affected generation and SRI, in a FireWatch-inspired layout. No FIRMS wildfire layers.
+An interactive map for exploring how wildfire smoke may affect solar power plants. It estimates baseline vs smoke-affected generation, a soiling risk score (SRI), and a simple bill impact.
 
-Coverage: Western US USGS USPVDB (AZ, CA, CO, ID, MT, NV, NM, OR, UT, WA, WY).
+## Scope
+Covers large solar plants across the Western U.S. (USGS USPVDB). Weather and air-quality data drive the site analysis when available.
 
 Original projects are **not modified**:
 
