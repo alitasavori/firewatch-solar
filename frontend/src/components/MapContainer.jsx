@@ -230,7 +230,6 @@ export default function MapContainer({
             </p>
             <p className="muted">
               Coverage: Western US USGS USPVDB (AZ, CA, CO, ID, MT, NV, NM, OR, UT, WA, WY).
-              Not full CONUS.
             </p>
           </div>
         )}
