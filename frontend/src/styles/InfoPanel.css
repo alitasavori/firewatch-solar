@@ -1,0 +1,273 @@
+.info-panel {
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 18, 36, 0.96);
+  color: #e8f0ff;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+  border-top: 2px solid rgba(0, 212, 255, 0.35);
+  min-height: 0;
+  max-height: 50vh;
+  flex-shrink: 0;
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+}
+
+.info-panel h3 {
+  margin: 0.4rem 0;
+  font-size: 1rem;
+  line-height: 1.2;
+  color: #ffc800;
+}
+
+.bill-summary {
+  margin: 0.15rem 0 0.6rem;
+  padding: 0.55rem 0.7rem;
+  background: rgba(3, 10, 24, 0.68);
+  border: 1px solid rgba(0, 212, 255, 0.28);
+  border-left: 3px solid #00d4ff;
+}
+
+.bill-summary__heading,
+.bill-summary__values {
+  display: flex;
+  align-items: center;
+}
+
+.bill-summary__heading {
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.45rem;
+}
+
+.bill-summary__eyebrow,
+.bill-summary__rate,
+.bill-summary__values span,
+.bill-summary__values small {
+  display: block;
+}
+
+.bill-summary__eyebrow {
+  color: #8fa3c7;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.bill-summary h4 {
+  margin: 0.05rem 0 0;
+  color: #e8f0ff;
+  font-size: 0.9rem;
+}
+
+.bill-summary__rate {
+  color: #a9bad2;
+  font-size: 0.7rem;
+  white-space: nowrap;
+}
+
+.bill-summary__values {
+  gap: 0.5rem;
+}
+
+.bill-summary__scenario,
+.bill-summary__difference {
+  min-width: 0;
+  padding: 0.35rem 0.55rem;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.bill-summary__scenario {
+  flex: 1;
+  border-top: 2px solid;
+}
+
+.bill-summary__scenario--baseline {
+  border-color: steelblue;
+}
+
+.bill-summary__scenario--wildfire {
+  border-color: orange;
+}
+
+.bill-summary__difference {
+  flex: 1.2;
+  border-top: 2px solid #ffc800;
+}
+
+.bill-summary__values span {
+  overflow: hidden;
+  color: #a9bad2;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bill-summary__values strong {
+  display: block;
+  margin: 0.05rem 0;
+  color: #f5f8ff;
+  font-size: clamp(0.85rem, 1.25vw, 1.1rem);
+  line-height: 1;
+}
+
+.bill-summary__difference strong {
+  color: #ffc800;
+}
+
+.bill-summary__values small {
+  overflow: hidden;
+  color: #7f93b2;
+  font-size: 0.62rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info-content {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 100%;
+  min-height: 0;
+}
+
+.left-side {
+  flex: 3;
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+}
+
+.left-side svg {
+  flex-grow: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* D3 axis / label ink — light on FireWatch navy (bar fills stay steelblue/orange) */
+.left-side svg .tick text,
+.left-side svg .xlabel,
+.left-side svg .ylabel,
+.left-side svg .legend-item text {
+  fill: #e8eef5;
+}
+
+.left-side svg .tick line,
+.left-side svg .domain {
+  stroke: #c8d4e6;
+}
+
+.left-side svg .y-grid .tick line {
+  stroke: #8fa3c7;
+}
+
+.left-side svg .y-grid .domain {
+  stroke: none;
+}
+
+.sri-gauge-container text {
+  fill: #e8eef5;
+}
+
+.right-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sri-trend-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+
+.sri-gauge-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.fw-callout-warn {
+  background: rgba(255, 90, 20, 0.12);
+  border-left: 3px solid #ff6b2b;
+  padding: 10px 12px;
+  margin: 8px 0 14px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #ffd0b8;
+}
+
+.fw-callout-aq {
+  background: rgba(0, 212, 255, 0.1);
+  border-left: 3px solid #00d4ff;
+  padding: 8px 12px;
+  margin: 4px 0 12px;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #b8e8ff;
+}
+
+.fw-loading-inline {
+  margin: 4px 0 12px;
+  font-size: 13px;
+  color: #9eb4cc;
+}
+
+.site-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.site-meta-grid > div {
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid #00d4ff;
+  padding: 8px 10px;
+}
+
+.site-meta-grid span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8fa3c7;
+  margin-bottom: 2px;
+}
+
+.site-meta-grid b {
+  font-size: 14px;
+  color: #e8f0ff;
+  font-weight: 600;
+}
+
+.info-panel--map-only {
+  max-height: none;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 800px) {
+  .bill-summary__heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .bill-summary__values {
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  .bill-summary__scenario,
+  .bill-summary__difference {
+    flex: 1 1 130px;
+  }
+}

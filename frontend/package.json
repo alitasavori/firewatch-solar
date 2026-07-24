@@ -1,0 +1,23 @@
+{
+  "name": "solarsense-firewatch-shell",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 3002 --host",
+    "build": "vite build",
+    "preview": "vite preview --port 3002 --host",
+    "start": "vite preview --port 3002 --host"
+  },
+  "dependencies": {
+    "d3": "^7.9.0",
+    "mapbox-gl": "^3.15.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-map-gl": "^7.1.9"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.2",
+    "vite": "^6.3.5"
+  }
+}

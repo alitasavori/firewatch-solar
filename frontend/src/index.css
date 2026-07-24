@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&family=Rajdhani:wght@500;600;700&display=swap');
+
+:root {
+  --fw-bg-deep: #0a0e1a;
+  --fw-bg-panel: rgba(8, 12, 28, 0.94);
+  --fw-bg-card: rgba(14, 20, 40, 0.92);
+  --fw-accent-cyan: #00d4ff;
+  --fw-accent-gold: #ffc800;
+  --fw-accent-orange: #ff6b2b;
+  --fw-accent-red: #ff3d5a;
+  --fw-text: #e8f0ff;
+  --fw-text-muted: #8fa3c7;
+  --fw-border: rgba(0, 212, 255, 0.35);
+  --fw-glow: 0 0 18px rgba(0, 212, 255, 0.25);
+  --fw-font-display: 'Bungee', 'Impact', sans-serif;
+  --fw-font-ui: 'Rajdhani', 'Segoe UI', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--fw-bg-deep);
+  font-family: var(--fw-font-ui);
+  color: var(--fw-text);
+}

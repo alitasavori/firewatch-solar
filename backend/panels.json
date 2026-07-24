@@ -1,0 +1,232 @@
+[
+    {
+        "panel_id": "0030005",
+        "site_name": "Brigham City #3",
+        "latitude": 41.485007,
+        "longitude": -112.021476,
+        "county": "003",
+        "site": "0005",
+        "county_name": "Box Elder",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0050007",
+        "site_name": "Smithfield",
+        "latitude": 41.842649,
+        "longitude": -111.852199,
+        "county": "005",
+        "site": "0007",
+        "county_name": "Cache",
+        "capacity": 3.0
+    },
+    {
+        "panel_id": "0071003",
+        "site_name": "Price #2",
+        "latitude": 39.59575,
+        "longitude": -110.770111,
+        "county": "007",
+        "site": "1003",
+        "county_name": "Carbon",
+        "capacity": 80.0
+    },
+    {
+        "panel_id": "0110004",
+        "site_name": "Bountiful Viewmont",
+        "latitude": 40.902967,
+        "longitude": -111.884467,
+        "county": "011",
+        "site": "0004",
+        "county_name": "Davis",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0130002",
+        "site_name": "Roosevelt",
+        "latitude": 40.29417803,
+        "longitude": -110.0097323,
+        "county": "013",
+        "site": "0002",
+        "county_name": "Duchesne",
+        "capacity": 40.0
+    },
+    {
+        "panel_id": "0190007",
+        "site_name": "Moab",
+        "latitude": 38.566055,
+        "longitude": -109.53716,
+        "county": "019",
+        "site": "0007",
+        "county_name": "Grand",
+        "capacity": 80.0
+    },
+    {
+        "panel_id": "0210005",
+        "site_name": "Enoch",
+        "latitude": 37.74743,
+        "longitude": -113.055525,
+        "county": "021",
+        "site": "0005",
+        "county_name": "Iron",
+        "capacity": 3.0
+    },
+    {
+        "panel_id": "0352005",
+        "site_name": "Copper View",
+        "latitude": 40.598056,
+        "longitude": -111.894167,
+        "county": "035",
+        "site": "2005",
+        "county_name": "Salt Lake",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0353006",
+        "site_name": "Hawthorne",
+        "latitude": 40.736389,
+        "longitude": -111.872222,
+        "county": "035",
+        "site": "3006",
+        "county_name": "Salt Lake",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0353010",
+        "site_name": "ROSE PARK",
+        "latitude": 40.78422,
+        "longitude": -111.931,
+        "county": "035",
+        "site": "3010",
+        "county_name": "Salt Lake",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0353013",
+        "site_name": "Herriman #3",
+        "latitude": 40.496392,
+        "longitude": -112.036298,
+        "county": "035",
+        "site": "3013",
+        "county_name": "Salt Lake",
+        "capacity": 3.0
+    },
+    {
+        "panel_id": "0353014",
+        "site_name": "Lake Park",
+        "latitude": 40.709762,
+        "longitude": -112.00876,
+        "county": "035",
+        "site": "3014",
+        "county_name": "Salt Lake",
+        "capacity": 4.0
+    },
+    {
+        "panel_id": "0353015",
+        "site_name": "Utah Technical Center",
+        "latitude": 40.777145,
+        "longitude": -111.945849,
+        "county": "035",
+        "site": "3015",
+        "county_name": "Salt Lake",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0353016",
+        "site_name": "Inland Port",
+        "latitude": 40.807897,
+        "longitude": -112.087717,
+        "county": "035",
+        "site": "3016",
+        "county_name": "Salt Lake",
+        "capacity": 40.0
+    },
+    {
+        "panel_id": "0353018",
+        "site_name": "Red Butte",
+        "latitude": 40.766528,
+        "longitude": -111.82835,
+        "county": "035",
+        "site": "3018",
+        "county_name": "Salt Lake",
+        "capacity": 3.0
+    },
+    {
+        "panel_id": "0354002",
+        "site_name": "Near Road",
+        "latitude": 40.6629611,
+        "longitude": -111.9018514,
+        "county": "035",
+        "site": "4002",
+        "county_name": "Salt Lake",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0450004",
+        "site_name": "Erda",
+        "latitude": 40.60055,
+        "longitude": -112.35578,
+        "county": "045",
+        "site": "0004",
+        "county_name": "Tooele",
+        "capacity": 40.0
+    },
+    {
+        "panel_id": "0471004",
+        "site_name": "Vernal #4",
+        "latitude": 40.46470972,
+        "longitude": -109.5614715,
+        "county": "047",
+        "site": "1004",
+        "county_name": "Uintah",
+        "capacity": 4.0
+    },
+    {
+        "panel_id": "0494001",
+        "site_name": "Lindon",
+        "latitude": 40.341389,
+        "longitude": -111.713611,
+        "county": "049",
+        "site": "4001",
+        "county_name": "Utah",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0495010",
+        "site_name": "Spanish Fork",
+        "latitude": 40.136378,
+        "longitude": -111.657936,
+        "county": "049",
+        "site": "5010",
+        "county_name": "Utah",
+        "capacity": 4.0
+    },
+    {
+        "panel_id": "0510001",
+        "site_name": "Heber",
+        "latitude": 40.497962,
+        "longitude": -111.39763,
+        "county": "051",
+        "site": "0001",
+        "county_name": "Wasatch",
+        "capacity": 1.5
+    },
+    {
+        "panel_id": "0530007",
+        "site_name": "Hurricane",
+        "latitude": 37.179125,
+        "longitude": -113.305096,
+        "county": "053",
+        "site": "0007",
+        "county_name": "Washington",
+        "capacity": 3.0
+    },
+    {
+        "panel_id": "0571003",
+        "site_name": "Harrisville",
+        "latitude": 41.30361395,
+        "longitude": -111.9878709,
+        "county": "057",
+        "site": "1003",
+        "county_name": "Weber",
+        "capacity": 3.0
+    }
+]

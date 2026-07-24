@@ -1,0 +1,215 @@
+/* Base: card list for larger screens (landscape/desktop) */
+.panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #eaecef;
+  font-size: 0.9rem;
+}
+
+/* Hide table header in card mode */
+.panel-list__header {
+  display: none;
+}
+
+/* A row is a full card (button for accessibility/keyboard focus) */
+.panel-list__row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.panel-list__row:hover,
+.panel-list__row.is-hovered {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.panel-list__row.is-map-only {
+  border-color: rgba(0, 212, 255, 0.22);
+}
+
+.panel-list__row.is-inference {
+  border-color: rgba(255, 200, 0, 0.28);
+}
+
+.panel-list__row.is-selected {
+  background: rgba(255, 196, 0, 0.18);
+  border-color: rgba(255, 196, 0, 0.4);
+  box-shadow: 0 2px 10px rgba(255, 196, 0, 0.25);
+}
+
+/* Card content blocks */
+.panel-card__title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.panel-card__subtitle {
+  color: #b9c4cf;
+  font-size: 0.82rem;
+}
+
+.panel-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  color: #cbd5e1;
+  font-size: 0.82rem;
+}
+
+.panel-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.panel-card__meta-label {
+  color: #94a3b8;
+}
+
+.panel-card__capacity {
+  margin-left: auto;
+  font-size: 0.8rem;
+  background: rgba(255, 196, 0, 0.12);
+  color: #ffd04d;
+  border: 1px solid rgba(255, 196, 0, 0.35);
+  border-radius: 999px;
+  padding: 2px 8px;
+  align-self: flex-start;
+}
+
+/* Cell utility (used for table mode too) */
+.panel-list__cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 🔒 IMPORTANT: Hide the 4 table cells in card (desktop) mode */
+.panel-list__row>.panel-list__cell {
+  display: none;
+}
+
+/* Body container */
+.panel-list__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-list__empty {
+  padding: 8px;
+  color: #9aa7b2;
+  font-style: italic;
+}
+
+/* =========================================
+   MOBILE / NARROW: switch to TABLE layout
+   ========================================= */
+@media (max-width: 1000px) {
+  .panel-list {
+    gap: 6px;
+  }
+
+  .panel-list__header {
+    display: grid;
+    grid-template-columns: 1.6fr 0.7fr 1.5fr 0.8fr;
+    gap: 8px;
+    align-items: center;
+    font-weight: 600;
+    color: #aab7c4;
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .panel-list__body {
+    gap: 0;
+  }
+
+  /* In table mode, the row becomes a grid instead of a card */
+  .panel-list__row {
+    display: grid;
+    grid-template-columns: 1.6fr 0.7fr 1.5fr 0.8fr;
+    gap: 8px;
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    transition: background 0.15s ease;
+  }
+
+  .panel-list__row:hover,
+  .panel-list__row.is-hovered {
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    box-shadow: none;
+  }
+
+  .panel-list__row.is-selected {
+    background: rgba(255, 196, 0, 0.18);
+    outline: 1px solid rgba(255, 196, 0, 0.4);
+    box-shadow: none;
+  }
+
+  /* Hide card-specific groups in table mode */
+  .panel-card__title,
+  .panel-card__subtitle,
+  .panel-card__meta,
+  .panel-card__capacity {
+    display: none;
+  }
+
+  /* ✅ Show the 4 standard cells on mobile */
+  .panel-list__row>.panel-list__cell {
+    display: block;
+  }
+}
+
+/* =========================================
+   DESKTOP: ensure the navbar scrolls nicely
+   ========================================= */
+.navbar .panel-list {
+  overflow: visible;
+}
+
+.navbar .navbar-section {
+  overflow: auto;
+  padding-right: 4px;
+}
+
+/* Optional: focus ring for keyboard nav */
+.panel-list__row:focus {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.panel-card__bill-diff {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #00ff9d;
+  background: rgba(0, 255, 157, 0.10);
+  border: 1px solid rgba(0, 255, 157, 0.35);
+  padding: 4px 8px;
+  border-radius: 6px;
+  width: fit-content;
+}
