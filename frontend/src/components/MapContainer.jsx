@@ -223,16 +223,14 @@ export default function MapContainer({
             <button className="close-btn" onClick={() => setInfoOpen(false)}>
               ×
             </button>
-            <h3>Legend</h3>
+            <h3>FireWatch Solar</h3>
             <p>
-              <span className="legend-dot inference" /> Utah EPA sites (MLP/SRI ready)
-            </p>
-            <p>
-              <span className="legend-dot uspvdb" /> Western US USPVDB (nearest EPA or Open-Meteo AQ)
+              Weather and PM2.5 forecasting for PV sites: baseline vs smoke-affected
+              generation and SRI, in a FireWatch-inspired layout. No FIRMS wildfire layers.
             </p>
             <p className="muted">
-              Zoom in to see more markers. FIRMS / wildfire layers are intentionally omitted.
-              PM2.5 uses the nearest EPA monitor within 100 km when available; otherwise Open-Meteo.
+              Coverage: Western US USGS USPVDB (AZ, CA, CO, ID, MT, NV, NM, OR, UT, WA, WY).
+              Not full CONUS.
             </p>
           </div>
         )}

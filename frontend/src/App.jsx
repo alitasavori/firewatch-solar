@@ -8,7 +8,6 @@ const InfoPanel = lazy(() => import('./components/InfoPanel'));
 
 function App() {
   const [panelsRaw, setPanelsRaw] = useState([]);
-  const [coverageMeta, setCoverageMeta] = useState(null);
   const [selectedPanelId, setSelectedPanelId] = useState(null);
   const [hoveredPanelId, setHoveredPanelId] = useState(null);
   const [visiblePanels, setVisiblePanels] = useState([]);
@@ -16,17 +15,13 @@ function App() {
   const [pendingDate, setPendingDate] = useState('2025-07-01');
   const [navbarOpen, setNavbarOpen] = useState(true);
   const [billDifference, setBillDifference] = useState(null);
-  const [listFilter, setListFilter] = useState('all'); // all | inference | map
 
   useEffect(() => {
     let cancelled = false;
 
     async function fetchPanels(attempt = 0) {
       try {
-        const [panelsRes, metaRes] = await Promise.all([
-          fetch(`${API_BASE}/api/panels`),
-          fetch(`${API_BASE}/api/panels/meta`).catch(() => null),
-        ]);
+        const panelsRes = await fetch(`${API_BASE}/api/panels`);
         if (!panelsRes.ok) {
           throw new Error(`panels HTTP ${panelsRes.status}`);
         }
@@ -34,9 +29,6 @@ function App() {
         const list = Array.isArray(data) ? data : data?.panels || [];
         if (cancelled) return;
         setPanelsRaw(list);
-        if (metaRes?.ok) {
-          setCoverageMeta(await metaRes.json());
-        }
       } catch (err) {
         console.error('Error fetching panels:', err);
         // Backend --reload / cold start can briefly reset connections.
@@ -77,12 +69,6 @@ function App() {
     }));
   }, [panelsRaw]);
 
-  const filteredPanels = useMemo(() => {
-    if (listFilter === 'inference') return panels.filter((p) => p.inferenceCapable);
-    if (listFilter === 'map') return panels.filter((p) => !p.inferenceCapable);
-    return panels;
-  }, [panels, listFilter]);
-
   const selectedPanel = useMemo(
     () => panels.find((p) => p.id === selectedPanelId) || null,
     [panels, selectedPanelId]
@@ -101,16 +87,11 @@ function App() {
   }, []);
 
   const panelsToShow = useMemo(() => {
-    const base = visiblePanels.length > 0 ? visiblePanels : filteredPanels;
-    const scoped = base.filter((p) => {
-      if (listFilter === 'inference') return p.inferenceCapable;
-      if (listFilter === 'map') return !p.inferenceCapable;
-      return true;
-    });
-    if (!selectedPanel) return scoped;
-    if (scoped.some((p) => p.id === selectedPanel.id)) return scoped;
-    return [...scoped, selectedPanel];
-  }, [visiblePanels, filteredPanels, selectedPanel, listFilter]);
+    const base = visiblePanels.length > 0 ? visiblePanels : panels;
+    if (!selectedPanel) return base;
+    if (base.some((p) => p.id === selectedPanel.id)) return base;
+    return [...base, selectedPanel];
+  }, [visiblePanels, panels, selectedPanel]);
 
   return (
     <div className="app-container">
@@ -123,9 +104,6 @@ function App() {
         onSelectPanel={setSelectedPanelId}
         onHoverPanel={setHoveredPanelId}
         billDifference={billDifference}
-        coverageMeta={coverageMeta}
-        listFilter={listFilter}
-        setListFilter={setListFilter}
         totalCount={panels.length}
       />
 
@@ -135,7 +113,7 @@ function App() {
         </div>
 
         <MapContainer
-          panels={filteredPanels}
+          panels={panels}
           selectedPanelId={selectedPanelId}
           hoveredPanelId={hoveredPanelId}
           onPanelClick={setSelectedPanelId}

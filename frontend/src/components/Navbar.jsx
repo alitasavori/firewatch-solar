@@ -11,8 +11,6 @@ export default function Navbar({
   onSelectPanel,
   onHoverPanel,
   billDifference,
-  listFilter,
-  setListFilter,
   totalCount,
 }) {
   return (
@@ -28,30 +26,6 @@ export default function Navbar({
         <div>
           Sites loaded: <b>{totalCount ?? panels.length}</b>
         </div>
-      </div>
-
-      <div className="fw-filter-row">
-        <button
-          type="button"
-          className={listFilter === 'all' ? 'is-active' : ''}
-          onClick={() => setListFilter('all')}
-        >
-          All
-        </button>
-        <button
-          type="button"
-          className={listFilter === 'inference' ? 'is-active' : ''}
-          onClick={() => setListFilter('inference')}
-        >
-          MLP ready
-        </button>
-        <button
-          type="button"
-          className={listFilter === 'map' ? 'is-active' : ''}
-          onClick={() => setListFilter('map')}
-        >
-          Map only
-        </button>
       </div>
 
       <div className="navbar-section">
