@@ -17,6 +17,6 @@ export const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
 if (!MAPBOX_TOKEN) {
   console.warn(
-    'Missing VITE_MAPBOX_TOKEN: the basemap will not render. Copy frontend/.env.example to frontend/.env and add a Mapbox token.'
+    'Missing VITE_MAPBOX_TOKEN: falling back to MapLibre OSM tiles. Copy frontend/.env.example to frontend/.env and add a Mapbox token for the SolarSense satellite basemap.'
   );
 }

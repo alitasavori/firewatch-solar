@@ -1,6 +1,7 @@
 .info-panel {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  position: relative;
+  z-index: 20;
   background: rgba(12, 18, 36, 0.96);
   color: #e8f0ff;
   padding-left: 1rem;
@@ -10,11 +11,14 @@
   border-top: 2px solid rgba(0, 212, 255, 0.35);
   min-height: 0;
   max-height: 50vh;
-  flex-shrink: 0;
+  height: auto;
+  flex: 0 0 auto;
   overflow-x: hidden;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
+  touch-action: pan-y;
+  pointer-events: auto;
   font-family: 'Rajdhani', 'Segoe UI', sans-serif;
 }
 
@@ -255,7 +259,7 @@
 }
 
 .info-panel--map-only {
-  max-height: none;
+  max-height: 50vh;
   padding-bottom: 12px;
 }
 

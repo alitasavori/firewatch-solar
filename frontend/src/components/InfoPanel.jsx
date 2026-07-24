@@ -602,13 +602,25 @@ function InfoPanel({
         }
     }, [panelData, selectedDayIndex]);
 
+    const stopMapScrollSteal = (e) => {
+        // Keep wheel/trackpad scrolling inside the analytics pane (map sits above in flex).
+        e.stopPropagation();
+    };
+
     if (!selectedPanel) {
-        return <div className="info-panel">Click a solar panel on the map.</div>;
+        return (
+            <div className="info-panel" onWheel={stopMapScrollSteal}>
+                Click a solar panel on the map.
+            </div>
+        );
     }
 
     if (panel && panel.inferenceCapable === false) {
         return (
-            <div className="info-panel info-panel--map-only">
+            <div
+                className="info-panel info-panel--map-only"
+                onWheel={stopMapScrollSteal}
+            >
                 <h3>{panel.name}</h3>
                 <div className="fw-callout-warn">
                     Map / inventory only — no PM2.5 source could be resolved for this
@@ -629,7 +641,7 @@ function InfoPanel({
 
     if (loading && !panelData) {
         return (
-            <div className="info-panel">
+            <div className="info-panel" onWheel={stopMapScrollSteal}>
                 <h3>{panel?.name || `Site ${selectedPanel}`}</h3>
                 <div className="fw-loading-inline">
                     Loading forecast data… map stays interactive.
@@ -639,11 +651,19 @@ function InfoPanel({
     }
 
     if (error) {
-        return <div className="info-panel">⚠️ {error}</div>;
+        return (
+            <div className="info-panel" onWheel={stopMapScrollSteal}>
+                ⚠️ {error}
+            </div>
+        );
     }
 
     if (!panelData || panelData.length === 0) {
-        return <div className="info-panel">No weather data available for this date range.</div>;
+        return (
+            <div className="info-panel" onWheel={stopMapScrollSteal}>
+                No weather data available for this date range.
+            </div>
+        );
     }
 
     const aqNote =
@@ -652,7 +672,7 @@ function InfoPanel({
             : null;
 
     return (
-        <div className="info-panel">
+        <div className="info-panel" onWheel={stopMapScrollSteal}>
             <h3>Site: {panel?.name}, {panel?.county} County</h3>
             {loading && (
                 <div className="fw-loading-inline">Refreshing forecast…</div>

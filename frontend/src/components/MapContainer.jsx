@@ -1,9 +1,16 @@
 import { useState, useRef, useEffect, useCallback, useMemo, memo } from 'react';
-import ReactMapGl, { Marker } from 'react-map-gl/maplibre';
+import MapboxMap, { Marker as MapboxMarker, Source } from 'react-map-gl';
+import MapLibreMap, { Marker as MapLibreMarker } from 'react-map-gl/maplibre';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles/MapContainer.css';
+import { MAPBOX_TOKEN } from '../config';
 
-// Free OSM raster style — Mapbox satellite token returned 401 locally.
+const USE_MAPBOX = Boolean(MAPBOX_TOKEN);
+const ReactMapGl = USE_MAPBOX ? MapboxMap : MapLibreMap;
+const Marker = USE_MAPBOX ? MapboxMarker : MapLibreMarker;
+
+// Free OSM raster style — used only when no Mapbox token is configured.
 const OSM_STYLE = {
   version: 8,
   sources: {
@@ -16,6 +23,8 @@ const OSM_STYLE = {
   },
   layers: [{ id: 'osm', type: 'raster', source: 'osm' }],
 };
+
+const MAPBOX_STYLE = 'mapbox://styles/mapbox/satellite-streets-v12';
 
 const WEST_BOUNDS = [
   [-125.5, 30.5],
@@ -163,6 +172,16 @@ export default function MapContainer({
     map.easeTo({ ...opts, duration: 400 });
   };
 
+  const mapProps = USE_MAPBOX
+    ? {
+        mapStyle: MAPBOX_STYLE,
+        mapboxAccessToken: MAPBOX_TOKEN,
+        terrain: { source: 'mapbox-dem', exaggeration: 1.2 },
+      }
+    : {
+        mapStyle: OSM_STYLE,
+      };
+
   return (
     <div className="mapbox-container">
       <ReactMapGl
@@ -170,10 +189,20 @@ export default function MapContainer({
         initialViewState={INITIAL_VIEW}
         onLoad={() => setMapReady(true)}
         style={{ width: '100%', height: '100%' }}
-        mapStyle={OSM_STYLE}
         maxBounds={WEST_BOUNDS}
         reuseMaps
+        {...mapProps}
       >
+        {USE_MAPBOX && (
+          <Source
+            id="mapbox-dem"
+            type="raster-dem"
+            url="mapbox://mapbox.mapbox-terrain-dem-v1"
+            tileSize={512}
+            maxzoom={14}
+          />
+        )}
+
         {renderPanels.map((panel) => (
           <PanelMarker
             key={panel.id}
